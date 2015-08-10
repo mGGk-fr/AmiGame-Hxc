@@ -1,6 +1,6 @@
 # AmiGame-Hxc
 This (dirty written) software allow you to select a folder containing HFE file in TOSEC format naming and order them.
-The binary version will come very soon !!!!
+[DOWNLOAD LINK](https://www.dropbox.com/s/y12jv1wnn5seywf/AmiGameHxc.7z?dl=0)
 
 ##How it works ?
 This soft order and sort hfe files by Name and Disk Order.
