@@ -24,4 +24,4 @@ The C++ will be a better version (I promise !)
 I've created it to order amiga game on my SD Card for my HxC on my Amiga 500 !
 
 ##Licence
-GPL v3 (file will come too)
+GPL v3 (file in the repo)
