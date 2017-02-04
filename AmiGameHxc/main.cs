@@ -19,11 +19,6 @@ namespace AmiGameHxc
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_browse_Click(object sender, EventArgs e)
         {
             browser.ShowDialog();
@@ -32,43 +27,39 @@ namespace AmiGameHxc
 
         private void button1_Click(object sender, EventArgs e)
         {
-            lb_gameList.Items.Clear();
-            string tempCurrentGame = "";
-            string tempScannedGameName = "";
-
-            List<Game> gameList = new List<Game>();
-            DirectoryInfo workDir = new DirectoryInfo(tb_adfDir.Text);
-            foreach (var file in workDir.GetFiles("*.hfe"))
-            {
-                tempScannedGameName = getCleanDiskFileName(file.Name);
-                if(tempScannedGameName == tempCurrentGame)
-                {
-                    gameList[gameList.Count - 1].addDiskFile(file.Name);
-                }
-                else
-                {
-                    gameList.Add(new Game(tempScannedGameName, file.Name));
-                    tempCurrentGame = tempScannedGameName;
-                }
-            }
-
-            foreach(Game curGame in gameList)
-            {
-                if(curGame.getNumberOfDisk() == 1)
-                {
-                    File.Copy(this.tb_adfDir.Text + "\\" + curGame.getFileDiskList()[0], this.tb_outDir.Text + "\\" + curGame.getGameName()+".hfe");
-                }
-                else
-                {
-                    Directory.CreateDirectory(this.tb_outDir.Text + "\\" + curGame.getGameName());
-                    foreach(string diskFile in curGame.getFileDiskList())
-                    {
-                        File.Copy(this.tb_adfDir.Text + "\\" + diskFile, this.tb_outDir.Text + "\\" + curGame.getGameName() + "\\" + getDiskNumber(diskFile)+".hfe");
+            if(tb_fileFormat.Text != "") {
+                lb_gameList.Items.Clear();
+                string tempCurrentGame = "";
+                string tempScannedGameName = "";
+                string filext = tb_fileFormat.Text;
+                List<Game> gameList = new List<Game>();
+                DirectoryInfo workDir = new DirectoryInfo(tb_adfDir.Text);
+                foreach (var file in workDir.GetFiles("*."+filext)) {
+                    tempScannedGameName = getCleanDiskFileName(file.Name);
+                    if (tempScannedGameName == tempCurrentGame) {
+                        gameList[gameList.Count - 1].addDiskFile(file.Name);
+                    } else {
+                        gameList.Add(new Game(tempScannedGameName, file.Name));
+                        tempCurrentGame = tempScannedGameName;
                     }
                 }
-                lb_gameList.Items.Add(curGame.getGameName());
+
+                foreach (Game curGame in gameList) {
+                    if (curGame.getNumberOfDisk() == 1) {
+                        File.Copy(this.tb_adfDir.Text + "\\" + curGame.getFileDiskList()[0], this.tb_outDir.Text + "\\" + curGame.getGameName() + "."+filext);
+                    } else {
+                        Directory.CreateDirectory(this.tb_outDir.Text + "\\" + curGame.getGameName());
+                        foreach (string diskFile in curGame.getFileDiskList()) {
+                            File.Copy(this.tb_adfDir.Text + "\\" + diskFile, this.tb_outDir.Text + "\\" + curGame.getGameName() + "\\" + getDiskNumber(diskFile) + "."+filext);
+                        }
+                    }
+                    lb_gameList.Items.Add(curGame.getGameName());
+                }
+                MessageBox.Show("Job Done !");
+            }else{
+                MessageBox.Show("You must provide a valid file extension", "Whooops !",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            MessageBox.Show("Job Done !");
+            
         }
 
         private string getCleanDiskFileName(string fileName)
@@ -88,6 +79,10 @@ namespace AmiGameHxc
         {
             browser.ShowDialog();
             tb_outDir.Text = browser.SelectedPath;
+        }
+
+        private void button3_Click(object sender, EventArgs e) {
+            MessageBox.Show("AmiGame HxC File Renamer"+Environment.NewLine+"mGGk 2017"+Environment.NewLine+"https://mggk.net");
         }
     }
 }
