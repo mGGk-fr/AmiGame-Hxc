@@ -82,7 +82,7 @@ namespace AmiGameHxc
         }
 
         private void button3_Click(object sender, EventArgs e) {
-            MessageBox.Show("AmiGame HxC File Renamer"+Environment.NewLine+"mGGk 2017"+Environment.NewLine+"https://mggk.net");
+            MessageBox.Show("AmiGame HxC File Renamer"+Environment.NewLine+"mGGk 2023"+Environment.NewLine+"https://mggk.net");
         }
     }
 }

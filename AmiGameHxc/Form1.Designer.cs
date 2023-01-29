@@ -144,8 +144,8 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(406, 17);
-            this.toolStripStatusLabel1.Text = "AmiGame HxC  (v1.1) : Guillaume \"mGGk\" Arino / 2015 / Under GNU GPL v3";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(407, 17);
+            this.toolStripStatusLabel1.Text = "AmiGame HxC  (v1.2) : Guillaume \"mGGk\" Arino / 2023 / Under GNU GPL v3";
             // 
             // button3
             // 
